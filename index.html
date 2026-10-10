@@ -1,129 +1,288 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Delightedtreats</title>
-    <meta
-      name="description"
-      content="Delightedtreats — a fresh, welcoming website for your brand."
-    />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-    <link rel="stylesheet" href="styles.css" />
-  </head>
-  <body>
-    <header class="site-header">
-      <nav class="container nav">
-        <div class="brand">Delightedtreats</div>
-        <div class="nav-links">
-          <a href="#home">Home</a>
-          <a href="#about">About</a>
-          <a href="#services">Services</a>
-          <a href="#contact">Contact</a>
-        </div>
-      </nav>
-    </header>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#bcecff">
+  <meta name="description" content="Delighted Treats — sweet cookies, made to brighten your day.">
+  <title>Delighted Treats | Sweeten Your Day</title>
+  <style>
+    :root {
+      --blue: #aee7ff;
+      --blue-dark: #267aa7;
+      --blue-deep: #174f70;
+      --cream: #fffaf0;
+      --pink: #ffdce9;
+      --brown: #67442f;
+      --white: #ffffff;
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--blue-deep);
+      background: var(--cream);
+      font-family: "Trebuchet MS", Arial, sans-serif;
+    }
+    a { color: inherit; }
+    .topbar {
+      padding: 12px 18px;
+      text-align: center;
+      background: var(--blue);
+      color: var(--blue-deep);
+      font-size: .9rem;
+      font-weight: 700;
+    }
+    header {
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      background: rgba(255,250,240,.94);
+      position: sticky;
+      top: 0;
+      z-index: 5;
+      border-bottom: 1px solid #d9f2ff;
+    }
+    .brand { font-weight: 900; font-size: 1.15rem; letter-spacing: -.03em; }
+    nav { display: flex; gap: 18px; flex-wrap: wrap; }
+    nav a { text-decoration: none; font-size: .92rem; font-weight: 700; }
+    nav a:hover { color: var(--blue-dark); }
+    .hero {
+      padding: 70px 7% 60px;
+      display: grid;
+      grid-template-columns: 1.15fr .85fr;
+      align-items: center;
+      gap: 40px;
+      background: linear-gradient(135deg, #dff6ff, #b8eaff 65%, #e8f9ff);
+      overflow: hidden;
+    }
+    .eyebrow {
+      display: inline-block;
+      padding: 8px 13px;
+      background: white;
+      border-radius: 999px;
+      font-weight: 800;
+      font-size: .82rem;
+      margin-bottom: 12px;
+    }
+    h1 {
+      margin: 0;
+      max-width: 650px;
+      font-size: clamp(2.8rem, 7vw, 5.4rem);
+      line-height: .98;
+      letter-spacing: -.06em;
+      color: var(--blue-deep);
+    }
+    .hero p { font-size: 1.1rem; line-height: 1.7; max-width: 520px; }
+    .actions { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 24px; }
+    .btn {
+      display: inline-block;
+      padding: 13px 19px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-weight: 900;
+      background: var(--blue-dark);
+      color: white;
+      border: 2px solid var(--blue-dark);
+      transition: transform .15s ease;
+    }
+    .btn:hover { transform: translateY(-2px); }
+    .btn.secondary { background: white; color: var(--blue-deep); border-color: white; }
+    .cookie-art {
+      min-height: 310px;
+      display: grid;
+      place-items: center;
+      position: relative;
+    }
+    .cookie {
+      width: min(290px, 68vw);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: radial-gradient(circle at 32% 26%, #f7d49b, #d9a15f 74%);
+      border: 10px solid #c78b4d;
+      box-shadow: 0 22px 0 rgba(23,79,112,.10), 0 28px 45px rgba(23,79,112,.16);
+      position: relative;
+      transform: rotate(-12deg);
+    }
+    .chip {
+      position: absolute;
+      width: 25px; height: 32px;
+      background: #6a3928;
+      border-radius: 45% 40% 55% 35%;
+      transform: rotate(22deg);
+    }
+    .chip:nth-child(1) { top: 18%; left: 29%; }
+    .chip:nth-child(2) { top: 28%; left: 65%; transform: rotate(-20deg) scale(.8); }
+    .chip:nth-child(3) { top: 52%; left: 45%; transform: rotate(50deg) scale(1.1); }
+    .chip:nth-child(4) { top: 65%; left: 23%; transform: rotate(-30deg) scale(.75); }
+    .chip:nth-child(5) { top: 72%; left: 68%; transform: rotate(12deg) scale(.85); }
+    .chip:nth-child(6) { top: 42%; left: 18%; transform: rotate(60deg) scale(.7); }
+    .sparkle { position: absolute; font-size: 2rem; color: white; font-weight: 900; }
+    .sparkle.one { top: 5%; right: 9%; }
+    .sparkle.two { bottom: 7%; left: 5%; font-size: 1.5rem; }
+    section { padding: 66px 7%; }
+    .section-heading { text-align: center; margin: 0 auto 34px; max-width: 600px; }
+    .section-heading h2 { font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 10px; letter-spacing: -.04em; }
+    .section-heading p { line-height: 1.6; margin: 0; color: #52788e; }
+    .menu { background: var(--cream); }
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      max-width: 1000px;
+      margin: auto;
+    }
+    .menu-card {
+      background: white;
+      border: 2px solid #d9f2ff;
+      border-radius: 25px;
+      padding: 25px 20px;
+      text-align: center;
+      box-shadow: 0 10px 0 #e8f7ff;
+    }
+    .cookie-icon {
+      width: 92px; height: 92px;
+      margin: 0 auto 15px;
+      display: grid; place-items: center;
+      border-radius: 50%;
+      background: #ffe7bd;
+      font-size: 2.8rem;
+    }
+    .menu-card h3 { margin: 0 0 8px; font-size: 1.25rem; }
+    .price { font-size: 2rem; color: var(--blue-dark); font-weight: 900; }
+    .menu-card p { color: #648091; margin-bottom: 0; font-size: .95rem; }
+    .note { text-align: center; margin-top: 24px; color: #648091; font-size: .9rem; }
+    .about {
+      background: var(--pink);
+      text-align: center;
+    }
+    .about-inner { max-width: 720px; margin: auto; }
+    .about h2 { font-size: clamp(2rem, 4vw, 3rem); margin: 0 0 14px; }
+    .about p { line-height: 1.8; font-size: 1.05rem; }
+    .socials {
+      background: #e7f8ff;
+      text-align: center;
+    }
+    .social-links { display: flex; justify-content: center; gap: 14px; flex-wrap: wrap; margin-top: 25px; }
+    footer {
+      padding: 28px 7%;
+      text-align: center;
+      background: var(--blue-deep);
+      color: white;
+      line-height: 1.8;
+    }
+    footer a { color: #c9efff; }
+    @media (max-width: 720px) {
+      header { padding: 14px 5%; align-items: flex-start; flex-direction: column; }
+      nav { gap: 13px; }
+      .hero { grid-template-columns: 1fr; padding: 52px 6% 38px; gap: 10px; }
+      .cookie-art { min-height: 250px; }
+      .cookie { width: 220px; }
+      .chip { width: 20px; height: 25px; }
+      section { padding: 52px 6%; }
+      .menu-grid { grid-template-columns: 1fr; max-width: 390px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar">A little cookie happiness goes a long way!</div>
+  <header>
+    <div class="brand">🍪 Delighted Treats</div>
+    <nav aria-label="Main navigation">
+      <a href="#menu">Menu</a>
+      <a href="#about">About</a>
+      <a href="#socials">Find Us</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
 
-    <main>
-      <section class="hero" id="home">
-        <div class="container hero-grid">
-          <div class="hero-copy">
-            <p class="eyebrow">Fresh. Friendly. Memorable.</p>
-            <h1>Make your brand feel special.</h1>
-            <p class="lead">
-              Delightedtreats helps you share your story, showcase your work,
-              and connect with customers in a simple, elegant way.
-            </p>
-            <div class="hero-actions">
-              <a class="btn btn-primary" href="#contact">Get Started</a>
-              <a class="btn btn-secondary" href="#about">Learn More</a>
-            </div>
-          </div>
-
-          <div class="hero-card">
-            <div class="mini-card">
-              <span class="label">Launch</span>
-              <strong>Ready in minutes</strong>
-            </div>
-            <div class="mini-card accent">
-              <span class="label">Design</span>
-              <strong>Modern & clean</strong>
-            </div>
-            <div class="mini-card">
-              <span class="label">Reach</span>
-              <strong>Worldwide</strong>
-            </div>
-          </div>
+  <main>
+    <section class="hero">
+      <div>
+        <div class="eyebrow">♡ Sweet treats, happy days ♡</div>
+        <h1>Cookies that make you smile</h1>
+        <p>Welcome to Delighted Treats! Find your cookie happiness with our sweet little menu. Thanks for supporting our small business.</p>
+        <div class="actions">
+          <a class="btn" href="#menu">See the menu</a>
+          <a class="btn secondary" href="#contact">Contact us</a>
         </div>
-      </section>
-
-      <section class="info-section" id="about">
-        <div class="container section-head">
-          <p class="eyebrow">About us</p>
-          <h2>Your website should feel like your brand.</h2>
-        </div>
-        <div class="container feature-grid">
-          <article class="feature">
-            <h3>Beautiful Design</h3>
-            <p>
-              A polished layout that gives your visitors confidence and makes
-              your content easy to explore.
-            </p>
-          </article>
-          <article class="feature">
-            <h3>Fast Experience</h3>
-            <p>
-              Lightweight pages provide a smoother experience and better results
-              across devices.
-            </p>
-          </article>
-          <article class="feature">
-            <h3>Easy to Update</h3>
-            <p>
-              Simple structure makes it easy to update content, change branding,
-              or expand your website later.
-            </p>
-          </article>
-        </div>
-      </section>
-
-      <section class="info-section alt" id="services">
-        <div class="container section-head">
-          <p class="eyebrow">Services</p>
-          <h2>Built for growth and engagement.</h2>
-        </div>
-        <div class="container service-grid">
-          <div class="service-box">
-            <h3>Brand Presence</h3>
-            <p>Stand out with a clear, memorable digital home.</p>
-          </div>
-          <div class="service-box">
-            <h3>Product Showcase</h3>
-            <p>Highlight offerings in a clean and engaging layout.</p>
-          </div>
-          <div class="service-box">
-            <h3>Customer Reach</h3>
-            <p>Connect with visitors and drive more action on your website.</p>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="site-footer" id="contact">
-      <div class="container footer-inner">
-        <div>
-          <h3>Delightedtreats</h3>
-          <p>Let your online presence feel as warm and memorable as your brand.</p>
-        </div>
-        <a class="btn btn-primary" href="mailto:hello@delightedtreats.com">hello@delightedtreats.com</a>
       </div>
-    </footer>
+      <div class="cookie-art" aria-label="Illustration of a chocolate chip cookie">
+        <span class="sparkle one">✦</span>
+        <span class="sparkle two">✧</span>
+        <div class="cookie">
+          <span class="chip"></span><span class="chip"></span><span class="chip"></span>
+          <span class="chip"></span><span class="chip"></span><span class="chip"></span>
+        </div>
+      </div>
+    </section>
 
-    <script src="script.js"></script>
-  </body>
+    <section class="menu" id="menu">
+      <div class="section-heading">
+        <h2>Our Cookie Menu</h2>
+        <p>Pick your perfect amount of cookie goodness.</p>
+      </div>
+      <div class="menu-grid">
+        <article class="menu-card">
+          <div class="cookie-icon" aria-hidden="true">🍪</div>
+          <h3>1 Cookie</h3>
+          <div class="price">$3</div>
+          <p>A little treat just for you</p>
+        </article>
+        <article class="menu-card">
+          <div class="cookie-icon" aria-hidden="true">🍪🍪</div>
+          <h3>2 Cookies</h3>
+          <div class="price">$6</div>
+          <p>One for you and one to share</p>
+        </article>
+        <article class="menu-card">
+          <div class="cookie-icon" aria-hidden="true">🍪🍪🍪</div>
+          <h3>3 Cookies</h3>
+          <div class="price">$8</div>
+          <p>More cookies, more happiness</p>
+        </article>
+      </div>
+      <p class="note">Cookie flavors and availability may vary. Contact us to ask what’s available.</p>
+    </section>
+
+    <section class="about" id="about">
+      <div class="about-inner">
+        <h2>Made to brighten your day ♡</h2>
+        <p>Delighted Treats is a small cookie business built around sharing sweet moments. Every order means a lot to us. Thank you for being here and supporting our cookie journey!</p>
+      </div>
+    </section>
+
+    <section class="socials" id="socials">
+      <div class="section-heading">
+        <h2>Follow the cookie fun</h2>
+        <p>Follow us for updates, treats, and more from Delighted Treats.</p>
+      </div>
+      <div class="social-links">
+        <a class="btn" href="https://www.tiktok.com/@delightedtreats6" target="_blank" rel="noopener noreferrer">TikTok ↗</a>
+        <a class="btn secondary" href="https://www.instagram.com/diljit_multani_singh/" target="_blank" rel="noopener noreferrer">Instagram ↗</a>
+      </div>
+    </section>
+
+    <section id="contact">
+      <div class="section-heading">
+        <h2>Want to order?</h2>
+        <p>Contact us through TikTok or Instagram to ask about available cookies and arranging your order.</p>
+        <div class="actions" style="justify-content:center">
+          <a class="btn" href="https://www.tiktok.com/@delightedtreats6" target="_blank" rel="noopener noreferrer">Message on TikTok</a>
+          <a class="btn secondary" href="https://www.instagram.com/diljit_multani_singh/" target="_blank" rel="noopener noreferrer">Message on Instagram</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <strong>Delighted Treats 🍪</strong><br>
+    Thanks for supporting our small business!<br>
+    <a href="https://www.tiktok.com/@delightedtreats6" target="_blank" rel="noopener noreferrer">TikTok</a>
+    ·
+    <a href="https://www.instagram.com/diljit_multani_singh/" target="_blank" rel="noopener noreferrer">Instagram</a>
+  </footer>
+</body>
 </html>
